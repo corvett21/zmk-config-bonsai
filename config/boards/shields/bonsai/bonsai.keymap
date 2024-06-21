@@ -20,47 +20,15 @@
 
 / {
     macros {
-	numshift: numshift {
-		compatible = "zmk,behavior-macro";
-		bindings
-			= <&macro_press &mo NUM &kp LSHFT>
-			, <&macro_pause_for_release>
-			, <&macro_release &mo NUM &kp LSHFT>
-			;
-		}
-	/*
-	// TODO: the following two macros only needed for mod-morphed sch
-	//       or activation through different combos.
-	// -> remove if unneeded!
-        macro_sch: macro_sch {
-            label = "Macro_sch";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp S &kp C &kp H>;
-	    tap-ms = <10>;
-        };
-        macro_shifted_sch: macro_shifted_sch {
-            label = "Macro_Sch";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap &kp LS(S) &kp C &kp H>;
-	    tap-ms = <10>;
-        };
-	// */
-
-	// promising candidate, only problem: impossible to hold shift through
-	// the activation and still have it registered as held afterwards
-        macro_shiftable_sch: macro_shiftable_sch {
-            label = "Macro_shiftable_sch";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <
-                    &macro_tap &kp S
-                    &macro_release &kp RSHIFT
-                    &macro_tap &kp C &kp H
-            >;
-            tap-ms = <10>;
-        };
+    numshift: numshift {
+	label = "Num_Shift"
+	compatible = "zmk,behavior-macro";
+	bindings
+		= <&macro_press &mo NUM &kp LSHFT>
+		, <&macro_pause_for_release>
+		, <&macro_release &mo NUM &kp LSHFT>
+		;
+	};
     };
 };
 
@@ -72,12 +40,14 @@ combo_##NAME { \
     key-positions = <KEYPOS>; \
 };
 
-//  _______________________  _______________________
-// |  0  |  1  |  2  |  3  \/   4 |   5 |   6 |   7 |
-//       |  8  |  9  | 10  /\  11 |  12 |  13 |
-//                   | 14 /  \ 15 |  
+// ________________________  ________________________
+// |  0  |  1  |  2  |  3 |  |  4 |   5 |   6 |   7 |
+// |_____|  8  |  9  | 10 |  | 11 |  12 |  13 |_____|
+//  \________________| 14 |  | 15 |________________/  
 //   ( 16 | 17 | 18  )             ( 19 | 20 | 21 ) 
-//  Note the 3-way switches (optional) are at the bottom, the 'fourth row' if you will
+//
+//  Note the 3-way switches (optional) are at the bottom;
+//  the 'fourth row' if you will
 
 /{
     combos {
@@ -85,7 +55,6 @@ combo_##NAME { \
 //Basics	
 	COMBO(esc, &kp ESC, 8 9)
 	COMBO(tab, &kp TAB, 9 10)
-	COMBO(shiftnum, &numshift, 0 1)
 	COMBO(lenter, &kp ENTER, 8 9 10)
 	COMBO(renter, &kp ENTER, 11 12 13)
 	COMBO(backspace, &kp BSPC, 11 12)
@@ -100,6 +69,7 @@ combo_##NAME { \
 	COMBO(semi, &kp SEMI, 5 12)
 //Layers
 //	COMBO(num-toggle, &mo NUM, 0 14)
+	COMBO(shiftnum, &numshift, 0 1)	
 	COMBO(fun-toggle, &mo FUN, 14 15)
 	COMBO(xtra-toggle, &mo SYM, 7 15)
 //Home Row Combos
@@ -112,11 +82,12 @@ combo_##NAME { \
     };
 };
 
-//  _______________________  _______________________
-// |  0  |  1  |  2  |  3  \/   4 |   5 |   6 |   7 |
-//       |  8  |  9  | 10  /\  11 |  12 |  13 |
-//                   | 14 /  \ 15 |  
+// ________________________  ________________________
+// |  0  |  1  |  2  |  3 |  |  4 |   5 |   6 |   7 |
+// |_____|  8  |  9  | 10 |  | 11 |  12 |  13 |_____|
+//  \________________| 14 |  | 15 |________________/  
 //   ( 16 | 17 | 18  )             ( 19 | 20 | 21 ) 
+//
 
 
 / {
@@ -193,6 +164,13 @@ combo_##NAME { \
 };
 
 
+// ________________________  ________________________
+// |  0  |  1  |  2  |  3 |  |  4 |   5 |   6 |   7 |
+// |_____|  8  |  9  | 10 |  | 11 |  12 |  13 |_____|
+//  \________________| 14 |  | 15 |________________/  
+//   ( 16 | 17 | 18  )             ( 19 | 20 | 21 ) 
+//
+
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -202,9 +180,9 @@ combo_##NAME { \
 
             bindings = <
                 &my_lt NUM N    &hl LSHIFT R    &hl LALT T     &hl LCTRL S       &hr RCTRL H    &hr LALT A     &hr LSHIFT I     &hr LGUI E
-                                &kp L  		    &kp D          &kp Y             &kp M          &kp O          &kp U
-															   &mo ATW  		 &my_lt NAV SPACE
-								&C_VOL_UP       &C_MUTE        &C_VOL_DN 		 &C_AC_SCROLL_UP &none         &C_AS_SCROLL_DOWN
+                                &kp L	        &kp D          &kp Y             &kp M          &kp O          &kp U
+							       &mo ATW  	 &my_lt NAV SPACE
+				&C_VOL_UP       &C_MUTE        &C_VOL_DN 	 &C_AC_SCROLL_UP &none         &C_AS_SCROLL_DOWN
             >;
         };
         numbers {
@@ -233,7 +211,7 @@ combo_##NAME { \
             bindings = <
                 &kp EXCL       &kp AT         &kp HASH       &kp DOLLAR         &kp AMPERSAND  &kp ASTERISK   &kp PERCENT    &trans
                                &kp GRAVE      &kp DQT        &kp UNDERSCORE     &kp BACKSLASH  &kp PIPE       &kp EQUAL
-															&kp TILDE          &trans
+								&kp TILDE          &trans
 							 &trans        &trans        &trans                 &trans         &trans         &trans
             >;
         };
@@ -241,10 +219,10 @@ combo_##NAME { \
             label = "FUN";
 
             bindings = <
-                &bootloader    &kp F10        &kp F11        &kp F12            &kp F4         &kp F5         &kp F6         &none
+                &bootloader    &kp F10        &kp F11        &kp F12            &kp F4         &kp F5         &kp F6         &bootloader
                                &kp F7         &kp F8         &kp F9             &kp F1         &kp F2         &kp F3
-															 &trans       	    &trans
-							 &trans        &trans        &trans                 &trans         &trans         &trans
+							     &trans      	&trans
+				&trans        &trans        &trans                 &trans         &trans         &trans
             >;
         };
         alphatwo {
