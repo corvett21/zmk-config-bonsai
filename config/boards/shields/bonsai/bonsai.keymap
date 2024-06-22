@@ -181,8 +181,8 @@ combo_##NAME { \
             bindings = <
                 &my_lt NUM N    &hl LSHIFT R    &hl LALT T     &hl LCTRL S       &hr RCTRL H    &hr LALT A     &hr LSHIFT I     &hr LGUI E
                                 &kp L	        &kp D          &kp Y             &kp M          &kp O          &kp U
-							       &mo ATW  	 &my_lt NAV SPACE
-				&C_VOL_UP       &C_MUTE        &C_VOL_DN 	 &C_AC_SCROLL_UP &none         &C_AS_SCROLL_DOWN
+							                                   &mo ATW       	 &my_lt NAV SPACE
+				&C_VOL_UP       &C_MUTE        &C_VOL_DN 	                                    &C_BRI_DN      &kp LC(LA(DEL))         &C_BRI_UP
             >;
         };
         numbers {
@@ -209,9 +209,9 @@ combo_##NAME { \
             label = "SYM";
 
             bindings = <
-                &kp EXCL       &kp AT         &kp HASH       &kp DOLLAR         &kp AMPERSAND  &kp ASTERISK   &kp PERCENT    &trans
-                               &kp GRAVE      &kp DQT        &kp UNDERSCORE     &kp BACKSLASH  &kp PIPE       &kp EQUAL
-								&kp TILDE          &trans
+                &bt BT_CLR     &bt BT_SEL 4    &bt BT_SEL 2    &bt BT_SEL 0        &kp AMPERSAND  &kp ASTERISK   &kp PERCENT    &trans
+                                 &sys_reset    &bt BT_SEL 3    &bt BT_SEL 1        &kp BACKSLASH  &kp PIPE       &sys_reset
+								                               &trans           &trans
 							 &trans        &trans        &trans                 &trans         &trans         &trans
             >;
         };
@@ -221,7 +221,7 @@ combo_##NAME { \
             bindings = <
                 &bootloader    &kp F10        &kp F11        &kp F12            &kp F4         &kp F5         &kp F6         &bootloader
                                &kp F7         &kp F8         &kp F9             &kp F1         &kp F2         &kp F3
-							     &trans      	&trans
+							                                 &trans      	&trans
 				&trans        &trans        &trans                 &trans         &trans         &trans
             >;
         };
