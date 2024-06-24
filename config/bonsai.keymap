@@ -21,7 +21,7 @@
 / {
     macros {
     numshift: numshift {
-	label = "Num_Shift"
+	label = "Num_Shift";
 	compatible = "zmk,behavior-macro";
 	#binding-cells = <0>;
 	bindings
