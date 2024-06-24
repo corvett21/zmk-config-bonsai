@@ -1,4 +1,4 @@
-#include bonsai.dtsi
+#include "bonsai.dtsi"
 
 &default_transform {
     col-offset = <11>;
