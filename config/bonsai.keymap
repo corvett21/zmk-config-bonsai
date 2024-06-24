@@ -23,6 +23,7 @@
     numshift: numshift {
 	label = "Num_Shift"
 	compatible = "zmk,behavior-macro";
+	#binding-cells = <0>;
 	bindings
 		= <&macro_press &mo NUM &kp LSHFT>
 		, <&macro_pause_for_release>
